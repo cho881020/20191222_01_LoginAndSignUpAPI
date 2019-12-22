@@ -2,6 +2,7 @@ package com.tjeit.a20191222_01_loginandsignupapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tjeit.a20191222_01_loginandsignupapi.utils.ConnectServer
 import kotlinx.android.synthetic.main.activity_edit_black_list.*
 
 class EditBlackListActivity : BaseActivity() {
@@ -23,6 +24,8 @@ class EditBlackListActivity : BaseActivity() {
             val content = contentEdt.text.toString()
 
 //            서버에 게시글 등록을 요청하는 기능을 추가해야함
+
+
 
         }
 
