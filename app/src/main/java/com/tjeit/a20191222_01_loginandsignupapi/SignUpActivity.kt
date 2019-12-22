@@ -38,13 +38,16 @@ class SignUpActivity : BaseActivity() {
                     val code = json.getInt("code")
                     Log.d("회원가입코드", "${code}")
 
+                    val message = json.getString("message")
+
                     runOnUiThread {
+//                        연습문제 : 토스트의 내용을 직접 코딩이 아니라
+//                        서버에서 내려주는 message를 받아서 토스트로 띄우자.
+
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+
                         if (code == 200) {
-                            Toast.makeText(mContext, "회원가입 성공입니다.", Toast.LENGTH_SHORT).show()
                             finish()
-                        }
-                        else {
-                            Toast.makeText(mContext, "회원가입 실패입니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
