@@ -1,8 +1,9 @@
 package com.tjeit.a20191222_01_loginandsignupapi.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class User(id:String, name:String, phone:String) {
+class User(id:String, name:String, phone:String) : Serializable {
     var loginId = id // String이라고 명시하는 효과
     var name = name
     var phoneNum = phone
