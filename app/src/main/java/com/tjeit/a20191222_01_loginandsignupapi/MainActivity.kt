@@ -3,6 +3,7 @@ package com.tjeit.a20191222_01_loginandsignupapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.tjeit.a20191222_01_loginandsignupapi.datas.BlackListData
 import com.tjeit.a20191222_01_loginandsignupapi.datas.User
 import com.tjeit.a20191222_01_loginandsignupapi.utils.ConnectServer
@@ -39,6 +40,39 @@ class MainActivity : BaseActivity() {
         ConnectServer.getRequestBlackList(mContext, object : ConnectServer.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
                 Log.d("블랙리스트목록응답", json.toString())
+
+                val code = json.getInt("code")
+
+                if (code == 200) {
+
+                    val data = json.getJSONObject("data")
+                    val black_lists = data.getJSONArray("black_lists")
+
+//                    블랙리스트 : 10개 => 0 ~ 9
+                    for (i in 0..black_lists.length()-1) {
+
+////                        JSONArray 내부의 i번째 JSONObject를 추출
+//                        val tempJson = black_lists.getJSONObject(i)
+////                        뽑아낸 JSONObject => BlackListData 클래스로 변경 (리스트뷰에서 활용 가능)
+//                        val tempData = BlackListData.getBlackListDataFromJson(tempJson)
+////                        BlackListData 클래스로 변경된 변수를 ArrayList에 추가
+//                        blackList.add(tempData)
+
+                        blackList.add(BlackListData.getBlackListDataFromJson(black_lists.getJSONObject(i)))
+
+
+                    }
+
+                }
+                else {
+
+                    val message = json.getString("message")
+
+                    runOnUiThread {
+                        Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
 
         })
